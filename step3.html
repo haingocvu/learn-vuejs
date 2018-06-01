@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var jq = $.noConflict();
+        jq(document).ready(()=>{
+            let app = new Vue({
+                el: '#root',
+                data: {
+                    menus: ['menu 1', 'menu 2', 'menu 3']
+                },
+                mounted: function(){
+                    this.$nextTick(function(){
+                        //alert('READY, FULLY LOAD EL');
+                        jq('#add').click(()=>{
+                            let input = jq("#minput");
+                            if(input.val() == "") return;
+                            app.menus.push(input.val());
+                            input.val("");
+                        })
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+   <div id="root">
+        <ul>
+            <li v-for="menu in menus" v-text="menu"><!--{{menu}}--></li>
+        </ul>
+        <input type="text" id="minput">
+        <button id="add">add</button>
+   </div>
+</body>
+</html>
