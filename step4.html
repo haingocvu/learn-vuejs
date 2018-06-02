@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step 4</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var jq = $.noConflict();
+        jq(document).ready(()=>{
+            let app = new Vue({
+                el: '#root',
+                data: {
+                    newmenu: '',
+                    menus: ['menu 1', 'menu 2', 'menu 3']
+                },
+                methods: {
+                    addMenu: function(){
+                        //console.log(this);
+                        this.menus.push(this.newmenu);
+                        this.newmenu = '';
+                    }
+                },
+            })
+        })
+    </script>
+</head>
+<body>
+   <div id="root">
+        <ul>
+            <li v-for="menu in menus" v-text="menu"></li>
+        </ul>
+        <input type="text" v-model="newmenu">
+        <button id="add" v-on:click="addMenu()">add</button>
+   </div>
+</body>
+</html>
